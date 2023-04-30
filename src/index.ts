@@ -253,3 +253,79 @@ const keyboard = document.querySelector('body');
             }
         }
     });
+
+    window.onkeydown = function(e) {
+        if (altLeft?.classList.contains("key__active") && ctrlLeft?.classList.contains("key__active")) {
+            keyboard?.classList.toggle("ru");
+        }
+
+        if (e.code == "ArrowRight") {
+            arrowRight?.classList.add("key__active");
+            textInput.innerHTML += "▶";
+        }
+        if (e.code == "ArrowLeft") {
+            arrowLeft?.classList.add("key__active");
+            textInput.innerHTML += "◀";
+        }
+        if (e.code == "ArrowDown") {
+            arrowDown?.classList.add("key__active");
+            textInput.innerHTML += "▼";
+        }
+        if (e.code == "ArrowUp") {
+            arrowUp?.classList.add("key__active");
+            textInput.innerHTML += "▲"; 
+        }
+        if (e.code == "Space") {
+            spacebarKey?.classList.add("key__active");
+            textInput.innerHTML += " ";
+        }
+        if (e.key == "Tab") {
+            textInput.innerHTML += "    ";
+        }
+        if (e.key == "Enter") {
+            textInput.innerHTML += "\n";
+        }
+        if (e.code == "Backspace") {
+            backspaceKey?.classList.add("key__active");
+            textInput.innerHTML = textInput.innerHTML.substring(0, textInput.innerHTML.length - 1);
+        }
+        if (e.code == "Backquote" && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "~";
+        }
+        if (e.code == `Digit1` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "!";
+        }
+        if (e.code == `Digit2` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "@";
+        }
+        if (e.code == `Digit3` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "#";
+        }
+        if (e.code == `Digit4` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "$";
+        }
+        if (e.code == `Digit5` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "%";
+        }
+        if (e.code == `Digit6` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "^";
+        }
+        if (e.code == `Digit7` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "&";
+        }
+        if (e.code == `Digit8` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "*";
+        }
+        if (e.code == `Digit9` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "(";
+        }
+        if (e.code == `Digit0` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += ")";
+        }
+        if (e.code == `Minus` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "_";
+        }
+        if (e.code == `Equal` && shiftLeft?.classList.contains("key__active")) {
+            textInput.innerHTML += "+";
+        }
+    }
