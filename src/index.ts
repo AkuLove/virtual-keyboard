@@ -110,3 +110,45 @@ const keyboard = document.querySelector('body');
     const delKey = document.querySelector(".del-key");
     const backspaceKey = document.querySelector(".backspace-key");
     const spacebarKey = document.querySelector(".spacebar-key");
+
+
+    keysArr.forEach(button => {
+        button.addEventListener("mousedown", function() {
+                //Включаем стили нажатия на кнопку
+                button.classList.add("key__active");
+                //Добавляем класс active для капс лока
+                if (button.textContent == "Caps Lock") {
+                    capsKey?.classList.toggle("caps-key-active");
+                }
+                //Отключяем все спец кнопки
+                //Проверяем нажат ли капс лок
+                if ((button as HTMLElement).innerText.length < 2 && capsKey?.classList.contains("caps-key-active")) {
+                    if ((button as HTMLElement).innerText.length < 2) {
+                        textInput.innerHTML += (button as HTMLElement).innerText
+                    }
+                } else {
+                    if ((button as HTMLElement).innerText.length < 2) {
+                        textInput.innerHTML += (button as HTMLElement).innerText?.toLocaleLowerCase();
+                    }
+                }
+                if (button.textContent == " ") {
+                    textInput.innerHTML += " ";
+                }
+                if (button.textContent== "Tab") {
+                    textInput.innerHTML += "    ";
+                }
+                if (button.textContent== "Enter") {
+                    textInput.innerHTML += "\n";
+                }
+                if (button.textContent == "backspace") {
+                    textInput.innerHTML = textInput.innerHTML.substring(0, textInput.innerHTML.length - 1);
+                }
+        });
+    });
+        //Выключаем стили нажатия на кнопку
+    keysArr.forEach(button => {
+        button.addEventListener("mouseup", function() {
+                button.classList.remove("key__active");
+
+        });
+    });
