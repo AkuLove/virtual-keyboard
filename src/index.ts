@@ -152,3 +152,104 @@ const keyboard = document.querySelector('body');
 
         });
     });
+
+
+    for (let i = 0; i < keysArr.length; i++) {
+        keysArr[i].setAttribute("keyname", (keysArr[i] as HTMLElement).innerText);
+        keysArr[i].setAttribute("lowerCase", (keysArr[i] as HTMLElement).innerText.toLowerCase());
+    }
+
+
+
+    document.onkeydown = function (e) {
+        if (e.code == "CapsLock") {
+            capsKey?.classList.toggle("caps-key-active");
+        }
+    }
+
+
+    window.addEventListener("keydown", function(e) {
+        
+        for (let i = 0; i < keysArr.length; i++) {
+            if (e.key == keysArr[i].getAttribute('keyname') || e.key == keysArr[i].getAttribute('lowerCase') || e.key == keysArr[i].getAttribute('ru') || e.key == keysArr[i].getAttribute('rul')) {
+                keysArr[i].classList.add("key__active");
+                if (capsKey?.classList.contains("caps-key-active") || shiftLeft?.classList.contains("key__active") || shiftRight?.classList.contains("key__active")) {
+                    if ((keysArr[i] as HTMLElement).innerText.length < 2) {
+                        textInput.innerHTML += (keysArr[i] as HTMLElement).innerText;
+                    }
+                } else {
+                    if ((keysArr[i] as HTMLElement).innerText.length < 2) {
+                        textInput.innerHTML += (keysArr[i] as HTMLElement).innerText?.toLocaleLowerCase();
+                    }
+                }
+            }
+            
+
+            //Отключаем двойное нажатие шифта
+            if (e.code == "ShiftLeft") {
+                shiftRight?.classList.remove("key__active");
+            }
+            if (e.code == "ShiftRight") {
+                shiftLeft?.classList.remove("key__active");
+            }
+            if (e.code == "AltLeft") {
+                altRight?.classList.remove("key__active");
+            }
+            if (e.code == "AltRight") {
+                altLeft?.classList.remove("key__active");
+            }
+
+            //Добавляем анимацию для спецсимволов
+            if (e.code == "Delete") {
+                delKey?.classList.add("key__active");
+            }
+            if (e.code == "ControlLeft") {
+                ctrlLeft?.classList.add("key__active");
+            }
+            if (e.code == "ControlRight") {
+                ctrlRight?.classList.add("key__active");
+            }
+            if (e.code == "CapsLock") {
+                capsKey?.classList.add("key__active");
+            }
+        }
+    });
+
+
+    window.addEventListener("keyup", function(e) {
+        for (let i = 0; i < keysArr.length; i++) {
+            if(e.key == keysArr[i].getAttribute('keyname') || e.key == keysArr[i].getAttribute('lowerCase') || e.key == keysArr[i].getAttribute('ru') || e.key == keysArr[i].getAttribute('rul')) {
+                keysArr[i].classList.remove("key__active");
+            }
+            if (arrowUp?.classList.contains("key__active")) {
+                arrowUp.classList.remove("key__active");
+            }
+            if (arrowDown?.classList.contains("key__active")) {
+                arrowDown.classList.remove("key__active");
+            }
+            if (arrowLeft?.classList.contains("key__active")) {
+                arrowLeft.classList.remove("key__active");
+            }
+            if (arrowRight?.classList.contains("key__active")) {
+                arrowRight.classList.remove("key__active");
+            }
+            if (delKey?.classList.contains("key__active")) {
+                delKey.classList.remove("key__active");
+            }
+            if (backspaceKey?.classList.contains("key__active")) {
+                backspaceKey.classList.remove("key__active");
+            }
+            if (capsKey?.classList.contains("key__active")) {
+                capsKey.classList.remove("key__active");
+            }
+            if (ctrlRight?.classList.contains("key__active")) {
+                ctrlRight.classList.remove("key__active");
+            }
+            if (ctrlLeft?.classList.contains("key__active")) {
+                ctrlLeft.classList.remove("key__active");
+            }
+            if (spacebarKey?.classList.contains("key__active")) {
+                spacebarKey.classList.remove("key__active");
+            }
+        }
+    });
